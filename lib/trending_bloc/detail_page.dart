@@ -33,9 +33,13 @@ class _DetailsPageState extends State<DetailsPage> {
           preferredSize: const Size.fromHeight(80.0),
           child: AppBar(
             backgroundColor: Colors.green,
+            toolbarHeight: 80.0,
+            titleSpacing: 0,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
             title: const Text(
               'Post',

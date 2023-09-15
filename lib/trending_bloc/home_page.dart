@@ -15,7 +15,9 @@ class Homepage extends StatelessWidget {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80.0),
             child: AppBar(
+              toolbarHeight: 80.0,
               backgroundColor: Colors.green,
+              titleSpacing: 0,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                 onPressed: () {
