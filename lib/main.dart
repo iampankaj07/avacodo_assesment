@@ -1,5 +1,7 @@
 import 'package:avacado_test/trending_bloc/home_page.dart';
+import 'package:avacado_test/trending_bloc/trending_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -18,7 +20,14 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Color(0xff17AF4E)),
           useMaterial3: true,
           textTheme: GoogleFonts.dmSansTextTheme()),
-      home: const Homepage(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => TrendingBloc(),
+          ),
+        ],
+        child: Homepage(),
+      ),
     );
   }
 }

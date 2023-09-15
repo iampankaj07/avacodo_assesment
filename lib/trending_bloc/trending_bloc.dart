@@ -16,6 +16,7 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   FutureOr<void> _onTrendingFetchingEvent(event, emit) async {
     final ApiProvider apiProvider = ApiProvider();
     emit(Trendingloading());
+    print("here");
     final data = await apiProvider.getTrending();
     emit(TrendingLoaded(data: data));
   }
