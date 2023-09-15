@@ -2,6 +2,7 @@
 
 import 'package:avacado_test/model/trending_model.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 // ignore: must_be_immutable
 class DetailsPage extends StatefulWidget {
@@ -13,6 +14,17 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  late YoutubePlayerController _controller;
+  final videoUrl = "https://www.youtube.com/watch?v=cYPKqRIFVdU";
+  @override
+  void initState() {
+    final videoId = YoutubePlayer.convertUrlToId(videoUrl);
+    _controller = YoutubePlayerController(
+        initialVideoId: videoId!,
+        flags: const YoutubePlayerFlags(autoPlay: false));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,13 +69,20 @@ class _DetailsPageState extends State<DetailsPage> {
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height / 3,
-                child: Image.network(
-                  "https://img.youtube.com/vi/6cwnBBAVIwE/0.jpg",
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  // height: 2.0,
+                child: YoutubePlayer(
+                  controller: _controller,
+                  showVideoProgressIndicator: true,
                 ),
               ),
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height / 3,
+              //   child: Image.network(
+              //     "https://img.youtube.com/vi/6cwnBBAVIwE/0.jpg",
+              //     fit: BoxFit.cover,
+              //     width: double.infinity,
+              //     // height: 2.0,
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Row(
